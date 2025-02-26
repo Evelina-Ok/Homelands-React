@@ -1,0 +1,34 @@
+.navbar {
+    width: 100%;
+    height: 90px;
+    margin: auto;
+    display: flex;
+    flex-direction: row;
+    align-items: end;
+    padding: 0;
+    gap: 2rem;
+    margin: 0;
+
+    ul {
+        width: 50%;
+        display: grid;
+        grid-template-columns: repeat(6, 1fr);
+        gap: 1rem;
+        align-items: center;
+        justify-content: center;
+li {
+    list-style: none;
+a {
+    text-decoration: none;
+    color: #ffffff;
+  }
+  a:hover {
+    color: #af7627;
+  }
+  
+  a:active {
+    color: #af7627;
+  }
+}
+    }
+}

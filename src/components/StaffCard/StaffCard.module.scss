@@ -1,0 +1,11 @@
+.staffSection {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr ;
+    gap: 1rem;
+    background-color: red;
+
+
+    .staffCard{
+        width: 300px
+    }
+}

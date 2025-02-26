@@ -1,0 +1,16 @@
+.card {
+   height: 300px;
+   margin: auto;
+   padding: 1.5rem;
+   background-color: #ffffffd7;
+   border: 1px solid #2a2a2a66;
+   box-shadow: 3px 3px 3px rgba(120, 120, 120, 0.402);
+  
+
+
+    img {
+        display: block;
+        width: 100%;
+        object-fit: contain;
+    }
+}

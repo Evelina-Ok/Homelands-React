@@ -1,0 +1,16 @@
+.staffContainer {
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr 1fr ;
+        gap: 1rem;
+        margin: 2rem;
+    
+    
+     
+
+            img {
+                display: block;
+                height: 30vh;
+                margin: auto;
+            }
+        
+}
