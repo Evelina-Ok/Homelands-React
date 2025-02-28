@@ -1,10 +1,12 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
+import { UserContext } from "../context/userContext";
 
 export function useGet (url, token) {
 
     const [data, setData] = useState();
     const [error, setError] = useState();
     const [isLoading, setIsLoading] = useState();
+    // const [userToken, setUserToken] = useContext(UserContext)
 
     useEffect (() => {
         setIsLoading(true);
@@ -19,7 +21,7 @@ export function useGet (url, token) {
         .then((data) => setData(data))
         .then((err) => setError(err))
         .finally(() => setIsLoading(false))
-    }, [url])
+    }, [url, token])
 
     return {data, error, isLoading}
 }

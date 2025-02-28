@@ -1,91 +1,67 @@
-import { useContext, useState } from "react";
-import { UserContext } from "../context/UserContext";
-import { InputField } from "../components/InputField/InputField";
-import { useForm } from "react-hook-form";
+import { useContext, useEffect, useState } from 'react'
+import { InputField } from '../components/InputField/InputField'
+import { UserContext } from '../context/userContext'
 
 export function LoginPage() {
-  const [email, setEmail] = useState();
-  const [password, setPassword] = useState();
-  const [loginMessage, setLoginMessage] = useState("");
-  const [error, setError] = useState(null);
+  const [email, setEmail] = useState()
+  const [password, setPassword] = useState()
+  const [loginMessage, setLoginMessage] = useState()
 
-  console.log("input", email, password);
+  console.log('Input Values', email, password)
 
-  const { setUserData } = useContext(UserContext);
+  const { setUserData } = useContext(UserContext)
 
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-  } = useForm();
-
-  const onSubmit = (data) => {
-    let urlencoded = new URLSearchParams();
-    urlencoded.append("username", data.username);
-    urlencoded.append("password", data.password);
+  function submitData() {
+    const body = new URLSearchParams()
+    body.append('username', email)
+    body.append('password', password)
 
     const options = {
-      method: "POST",
+      method: 'POST',
       body: body,
-    };
+    }
 
-    fetch("http://localhost:4000/login", options)
-      .then((res = res.json()))
+    fetch('https://api.mediehuset.net/token', options)
+      .then((res) => res.json())
       .then((data) => {
         if (data.access_token) {
-          setUserData(data);
+          setUserData(data)
           setLoginMessage(
-            `Du er nu logget ind... Velkommen tilbage ${data.user.firstname}`
-          );
+            `Du er nu logget ind.. Velkommen tilbage ${data.user.firstname}`
+          )
         } else {
-          setLoginMessage("Du har indtastet forkert password eller email");
+          setLoginMessage('Du har tastet forkert password eller email')
         }
       })
-      .catch((err) => setError(err));
-  };
+      .catch((err) => console.error('Error: ', err))
+  }
+
+  useEffect(() => {
+    document.title = `Login`
+  }, [])
 
   return (
     <>
-      <h1>Login</h1>
-      <h5>{loginMessage}</h5>
-      <form onSubmit={handleSubmit(onSubmit)}>
+      <form>
         <InputField
-          type="email"
-          placeholder="Indtast din mail"
-          email="Email"
-          id="emailField"
-          labelText="Email"
-          name="Email"
+          type='email'
+          placeholder='Indtast din mail..'
+          name='Email'
+          id='emailField'
+          labelText='Email'
           action={setEmail}
-          {...register("username", {
-            required: "E-mailen er nødvendig.",
-            pattern: {
-              value: /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/,
-              message: "Ugyldigt e-mail",
-            },
-          })}
         />
-        {errors.username && <p>{errors.username.message}</p>}
-
         <InputField
-          type="password"
-          placeholder="Indtast dit password"
-          password="Password"
-          id="passwordField"
-          labelText="Password"
+          type='password'
+          placeholder={'Indtast dit password...'}
+          name='Password'
+          id='passwordField'
+          labelText='Password'
           action={setPassword}
-          {...register("password", {
-            required: "Koden er nødvendig.",
-            minLength: {
-              value: 5,
-              message: "Adgangskoden skal være mindst 5 tegn lang",
-            },
-          })}
         />
-        {errors.password && <p>{errors.password.message}</p>}
       </form>
-      {/* button should never be inside the form as it's going to refresh the form. Or use prevent default */}
-      <button onClick={() => submitData()}>Login</button>
-    </>
-  );
+      <button onClick={() => submitData()}>Send</button>
+      {loginMessage}
+      </>
+  )
 }
