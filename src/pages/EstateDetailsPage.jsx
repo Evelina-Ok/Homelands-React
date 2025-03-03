@@ -31,11 +31,11 @@ export function EstateDetailsPage() {
               space={detail.floor_space}
               rooms={detail.num_rooms}
               clicks={detail.num_clicks}
-              id={detail.id}
-              price={Number(detail.price).toLocaleString("da-DK")}
-              udbetaling={Number(detail.payout).toLocaleString("da-DK")}
-              udgifter={`${Number(detail.cost).toLocaleString("da-DK")},00`}
 
+              price={Number(detail.price).toLocaleString("da-DK")}
+              payout={Number(detail.payout).toLocaleString("da-DK")}
+              cost={`${Number(detail.cost).toLocaleString("da-DK")},00`}
+              estateNum={detail.id}
               floor={detail.floor_space}
               area={detail.ground_space}
               floors={detail.num_floors}
