@@ -1,39 +1,52 @@
-import { useForm } from "react-hook-form";
-import { InputField } from "../InputField/InputField";
-import style from "./Form.module.scss";
+import { useRef, useState } from 'react';
 
-export function Form ({ formArray, callback, buttonText, children, custom }) {
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-  } = useForm({
-    mode: "onChange",
-  }); 
+export default function Login() {
+  const [emailIsInvalid, setEmailIsInvalid] = useState(false);
 
-  function submit(data) {
-    callback(data);
+  const email = useRef();
+  const password = useRef();
+
+  function handleSubmit(event) {
+    event.preventDefault();
+
+    const enteredEmail = email.current.value;
+    const enteredPassword = password.current.value;
+
+    const emailIsValid = enteredEmail.includes('@');
+
+    if (!emailIsValid) {
+      setEmailIsInvalid(true);
+      return;
+    }
+
+    setEmailIsInvalid(false);
+
+    console.log('Sending HTTP request...');
   }
 
   return (
-    <form className={`${style.formStyling} ${style[custom]}`}  onSubmit={handleSubmit(submit)}>
-      {formArray.map((item) => (
-        <InputField
-          key={item.name}
-          name={item.name}
-          label={item.label}
-          type={item.type}
-          placeholder={item.placeholder}
-          register={register}
-          validation={item.validation}
-          error={errors[item.name]}
-          options={item.options}
-        />
-      ))}
-      <div>
-      <input type="submit" value={buttonText} />
-      {children}
+    <form onSubmit={handleSubmit}>
+      <h2>Login</h2>
+
+      <div className="control-row">
+        <div className="control no-margin">
+          <label htmlFor="email">Email</label>
+          <input id="email" type="email" name="email" ref={email} />
+          <div className="control-error">
+            {emailIsInvalid && <p>Please enter a valid email address.</p>}
+          </div>
+        </div>
+
+        <div className="control no-margin">
+          <label htmlFor="password">Password</label>
+          <input id="password" type="password" name="password" ref={password} />
+        </div>
       </div>
+
+      <p className="form-actions">
+        <button className="button button-flat">Reset</button>
+        <button className="button">Login</button>
+      </p>
     </form>
   );
-};
+}
