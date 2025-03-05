@@ -1,3 +1,5 @@
+@use "../../styles/placeholders" as *;
+
 .navbar {
     width: 100%;
     height: 90px;
@@ -11,11 +13,15 @@
 
     ul {
         width: 50%;
-        display: grid;
-        grid-template-columns: repeat(6, 1fr);
+        display: flex;
+        flex-direction: row;
+        // display: grid;
+        // grid-template-columns: repeat(6, 1fr);
         gap: 1rem;
         align-items: center;
         justify-content: center;
+        @extend %odibee;
+        font-size: 1.8rem;
 li {
     list-style: none;
 a {

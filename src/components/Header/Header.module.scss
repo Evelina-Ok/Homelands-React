@@ -1,13 +1,26 @@
+@use "../../styles/placeholders" as *;
+
+
 .headerStyle {
   display: flex;
   align-items: center;
+  width: 100%;
+  display: flex;
   justify-content: space-between;
   background-color: #212126;
   padding: 1vw 8vw;
   padding-top: 1.5vw;
 
+  .logo {
+    @extend %odibee;
+    font-size: 3rem;
+    background-color: #af7627;
+    padding: 0.5rem 1rem 0 1rem;
+    border: 1px solid #212126;
+    margin: 0;
+  }
   a {
     text-decoration: none;
     color: #ffffff;
-  }
+    }
 }

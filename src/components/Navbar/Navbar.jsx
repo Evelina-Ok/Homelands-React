@@ -12,7 +12,7 @@ export function Navbar() {
             <NavLink to="/products">Boliger til salg</NavLink>
           </li>
           <li>
-            <NavLink to="/login">LOGIN</NavLink>
+            <NavLink to="/login">Login</NavLink>
           </li>
         </ul>
       </nav>
