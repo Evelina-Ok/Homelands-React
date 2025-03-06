@@ -3,6 +3,7 @@ import { MainLayout } from './layout/MainLayout'
 import { FrontPage } from './pages/FrontPage'
 import { LoginPage } from './pages/LoginPage'
 import { EstateDetailsPage } from './pages/EstateDetailsPage'
+import { EstatesPage } from './pages/EstatesPage'
 
 function App() {
 
@@ -12,7 +13,7 @@ function App() {
       <Routes>
         <Route path={'/'} element={<MainLayout />}>
             <Route index={true} element={<FrontPage />} />
-            {/* <Route path="/boliger" element={<HousingPage />} /> */}
+            <Route path="/estates" element={<EstatesPage />} />
             <Route path="/details/:id" element={<EstateDetailsPage />} />
             <Route path="/login" element={<LoginPage />} />
         </Route>
