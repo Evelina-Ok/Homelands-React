@@ -4,13 +4,7 @@ import { EstateContainer } from "../components/EstateContainer/EstateContainer";
 import { EstateCard } from "../components/EstateCard/EstateCard";
 
 export function FrontPage() {
-  /* const { data, isLoading, error } = useGet (
-        "https://api.mediehuset.net/homelands/staff"
-    )
-    if (error) {
-        return <p>Error, can't load, try again later</p>
-    }
-    console.log("staff", data); */
+  
 
   const { data, isLoading, error } = useGet(
     "https://api.mediehuset.net/homelands/homes"
@@ -50,28 +44,6 @@ export function FrontPage() {
       <section>
         <StaffCard />
       </section>
-      {/* <section>
-        <h2>Mød vores ansatte</h2>
-
-        <StaffContainer>
-          {isLoading ? (
-            <div>Loading...</div>
-          ) : (
-            data?.items.map((item) => {
-              return (
-              <StaffCard 
-                key={item.id}
-                imgSrc={item.image}
-                name={`${item.firstname} ${item.lastname}`} 
-                occupation={item.position}
-                email={item.email}
-                phone={item.phone}
-              />
-            )
-            })
-          )}
-        </StaffContainer>
-      </section> */}
     </div>
   );
 }

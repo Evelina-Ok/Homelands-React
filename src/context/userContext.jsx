@@ -20,26 +20,6 @@ export const UserContextProvider = ({ children }) => {
             sessionStorage.setItem('userData', JSON.stringify(userData));
         }
     }, [userData]); // This will trigger only when userData is updated
-
-
-
-/*     )
-    export const UserContextProvider = ({ children }) => {
-        const [userData, setUserData] = useState();
-
-    useEffect(() => {
-        if (!userData) {
-          //Hvis userData kan findes i sessionstorage så set den i en local state
-          if (sessionStorage.getItem('userData')) {
-            setUserData(JSON.parse(sessionStorage.getItem('userData')));
-          }
-        }
-    
-        if (userData?.access_token) {
-          //Hvis userData findes i local state, så sæt den i sessionStorage
-          sessionStorage.setItem('userData', JSON.stringify(userData));
-        }
-      }, [userData]); */
     
       return (
         <UserContext.Provider value={{ userData, setUserData, userToken, setUserToken }}>
